@@ -61,7 +61,8 @@ namespace TrackerTestTask.Controllers
                                                 .Select(x => new TrackLocations
                                                 { IMEI = x.IMEI, Latitude = x.Latitude, Longitude = x.Longitude, DateTrack = x.DateTrack }).ToList();
 
-                    List<WalkInfo> top10Walks = WalkCalculate.GetWalks(trackLocations, interval).OrderByDescending(w => w.WalkDistance).Take(10).ToList();                   
+                    List<WalkInfo> top10Walks = WalkCalculate.GetWalks(trackLocations, interval).OrderByDescending(w => w.WalkDistance).Take(10).ToList();
+                    
                     message = ViberSender.SetMessage(receiver, top10Walks);
                 }
                 else if (viberMsg == "back")
